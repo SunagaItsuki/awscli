@@ -1,0 +1,50 @@
+SGを作成するコマンド
+https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/create-security-group.html
+aws ec2 create-security-group \
+  --description "common-sg(Public)"\
+  --group-name "common-sg(Public)"\
+  --vpc-id "vpc-0ea78a6aad3acf3fe"\
+  --tag-specifications 'ResourceType=security-group,Tags=[{Key=Name,Value="common-sg(Public)"}]'\
+  --output json
+
+インバウンドルールを追加するコマンド
+https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/authorize-security-group-ingress.html
+ aws ec2 authorize-security-group-ingress \
+     --group-id ${GROUP_ID} \
+     --ip-pexrmissions IpProtocol=${PROTOCOL},FromPort=${SRC_PORT},ToPort=${DST_PORT},\
+       IpRanges='[{CidrIp="${SRC_IP}",Description="${DESCRIPTION}"}]'\
+     --dry-run\
+     --output json
+
+もしくはこっち
+aws ec2 authorize-security-group-ingress --group-id sg-04d1709e6edb263f5 --protocol tcp --port 22 --cidr 123.225.214.4/32
+
+
+アウトバウンドルールを追加するコマンド
+https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/authorize-security-group-egress.html 
+[root@ESX-KUBE-01 awscli]# aws ec2 describe-security-groups --group-ids sg-04d1709e6edb263f5
+{
+    "SecurityGroups": [
+        {
+            "Description": "test group",
+            "GroupName": "test-group",
+            "IpPermissions": [],
+            "OwnerId": "566963228915",
+            "GroupId": "sg-04d1709e6edb263f5",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "VpcId": "vpc-0ea78a6aad3acf3fe"
+        }
+    ]
+}
