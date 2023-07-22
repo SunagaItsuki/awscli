@@ -1,8 +1,8 @@
 #/bin/bash
 
 # 変数宣言
-echo "IGW作成処理開始"
-echo "IGW用変数を設定中"
+echo -e "\n############################# IGW作成処理開始 #############################\n"
+echo -e "\n############################# 変数設定開始 #############################\n"
 
 source ./env/global.env
 source ./env/create_IGW.env
@@ -13,8 +13,9 @@ echo "AWS_DEFAULT_REGION:${AWS_DEFAULT_REGION}"
 echo "EC2_INTERNET_GATEWAY_TAG_NAME:${EC2_INTERNET_GATEWAY_TAG_NAME}"
 echo "STRING_EC2_INTERNET_GATEWAY_TAG:${STRING_EC2_INTERNET_GATEWAY_TAG}"
 echo "EC2_VPC_TAG_NAME:${EC2_VPC_TAG_NAME}"
-echo "IGW用変数を設定完了"
 
+echo -e "\n############################# 変数設定完了 #############################"
+echo -e "\n############################# IGW作成開始 #############################\n"
 # IGW作成
 echo "IGW[${EC2_INTERNET_GATEWAY_TAG_NAME}]を作成し、VPC[${EC2_VPC_TAG_NAME}]へアタッチします"
 read -p "よろしいですか？(y/n):" answer
@@ -38,9 +39,10 @@ CREATED_IGW_NAME=$(
 
 echo "IGW[${CREATED_IGW_NAME}]を作成しました"
 
-echo "IGW作成処理終了"
+echo -e "\n############################# IGW作成完了 #############################"
 
-echo "IGWアタッチ処理開始"
+echo -e "\n############################# IGWアタッチ開始 #############################\n"
+
 # 変数宣言
 EC2_INTERNET_GATEWAY_ID=$( \
   aws ec2 describe-internet-gateways \
@@ -57,8 +59,8 @@ EC2_VPC_ID=$( \
 )
 
 #IGW用変数確認
-echo "EC2_INTERNET_GATEWAY_ID:${EC2_INTERNET_GATEWAY_ID}"
-echo "EC2_VPC_ID:${EC2_VPC_ID}"
+# echo "EC2_INTERNET_GATEWAY_ID:${EC2_INTERNET_GATEWAY_ID}"
+# echo "EC2_VPC_ID:${EC2_VPC_ID}"
 
 
 # IGWアタッチ
@@ -78,4 +80,6 @@ ATTACHED_VPC_ID=$(
 
 echo "IGW[${EC2_INTERNET_GATEWAY_TAG_NAME}]を、VPC[${EC2_VPC_TAG_NAME}]へアタッチしました"
 
-echo "IGWアタッチ処理終了"
+
+echo -e "\n############################# IGWアタッチ完了 #############################\n"
+echo -e "\n############################# IGW作成処理完了 #############################\n"

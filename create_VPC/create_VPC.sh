@@ -1,8 +1,8 @@
 #/bin/bash
 
 # 変数宣言
-echo "VPC作成処理開始"
-echo "VPC用変数を設定中"
+echo -e "\n############################# VPC作成処理開始 ##############################"
+echo -e "\n############################# 変数設定開始 ##############################\n"
 
 source ./env/global.env
 source ./env/create_VPC.env
@@ -14,10 +14,12 @@ echo "EC2_VPC_TAG_NAME:${EC2_VPC_TAG_NAME}"
 echo "EC2_VPC_CIDR:${EC2_VPC_CIDR}"
 echo "STRING_EC2_VPC_TAG:${STRING_EC2_VPC_TAG}"
 
-echo "VPC用変数の設定完了"
+echo -e "\n############################# 変数設定完了 ##############################"
+echo -e "\n############################# VPC作成開始 #############################"
 
 # VPC作成
-echo "VPC[${EC2_VPC_TAG_NAME}]を作成します"
+# echo "VPC <${EC2_VPC_TAG_NAME}を作成します"
+echo -e "\n上記の設定でVPCを作成します"
 
 read -p "よろしいですか？(y/n):" answer
 
@@ -31,6 +33,8 @@ else
   exit 1
 fi
 
+echo -e "\n############################# VPC作成完了 #############################"
+
 # VPC作成結果確認
 CREATED_VPC_NAME=$( \
   aws ec2 describe-vpcs \
@@ -39,5 +43,5 @@ CREATED_VPC_NAME=$( \
     --output text
 )
 
-echo "VPC[${CREATED_VPC_NAME}]を作成しました"
-echo "VPC作成処理終了"
+echo -e "\nVPC:${CREATED_VPC_NAME}を作成しました"
+echo -e "\n############################# VPC作成処理終了 ##############################"
