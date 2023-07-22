@@ -4,7 +4,7 @@
 echo -e "\n******************EC2インスタンス作成処理開始******************\n"
 echo -e "\n******************EC2インスタンス用変数を設定中******************\n"
 
-export AWS_DEFAULT_REGION='us-east-1'
+AWS_DEFAULT_REGION='us-east-1'
 EC2_AMI_ID='ami-your_ami_id'
 EC2_INSTANCE_TYPE='t2.micro'
 EC2_KEY_NAME='your_key_name'

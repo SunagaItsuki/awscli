@@ -4,7 +4,7 @@
 echo "IGW作成処理開始"
 echo "IGW用変数を設定中"
 
-export AWS_DEFAULT_REGION='us-east-1'
+AWS_DEFAULT_REGION='us-east-1'
 EC2_INTERNET_GATEWAY_TAG_NAME='Lab-igw'
 STRING_EC2_INTERNET_GATEWAY_TAG="ResourceType=internet-gateway,Tags=[{Key=Name,Value=${EC2_INTERNET_GATEWAY_TAG_NAME}}]"
 EC2_VPC_TAG_NAME='Lab'

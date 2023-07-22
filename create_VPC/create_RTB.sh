@@ -4,7 +4,7 @@
 echo "パブリックルートテーブル作成処理開始"
 echo "パブリックルートテーブル用変数を設定中"
 
-export AWS_DEFAULT_REGION='us-east-1'
+AWS_DEFAULT_REGION='us-east-1'
 EC2_PUBLIC_ROUTE_TABLE_TAG_NAME='your_public_route_table'
 STRING_EC2_PUBLIC_ROUTE_TABLE_TAG="ResourceType=route-table,Tags=[{Key=Name,Value=${EC2_PUBLIC_ROUTE_TABLE_TAG_NAME}}]"
 EC2_VPC_TAG_NAME='your_vpc_name'
