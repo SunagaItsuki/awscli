@@ -4,14 +4,10 @@
 echo "サブネット作成処理開始"
 echo "パブリックサブネットa用変数設定中"
 
-AWS_DEFAULT_REGION='us-east-1'
-EC2_AZ_CODE="a"
-EC2_SUBNET_TYPE="public"
-EC2_SUBNET_TAG_NAME="your_public_subnet_name(az:a)"
-EC2_SUBNET_CIDR='10.0.1.0/24'
+source ./env/global.env
+source ./env/create_Subnets.env
 EC2_AZ_NAME=${AWS_DEFAULT_REGION}${EC2_AZ_CODE}
 STRING_EC2_SUBNET_TAG="ResourceType=subnet,Tags=[{Key=Name,Value=${EC2_SUBNET_TAG_NAME}}]"
-EC2_VPC_TAG_NAME='your_vpc_name'
 EC2_VPC_ID=$( \
   aws ec2 describe-vpcs \
     --filters Name=tag:Name,Values=${EC2_VPC_TAG_NAME}  \
@@ -73,10 +69,6 @@ echo "作成したサブネットCIDR:${CREATED_SUBNET_CIDR}"
 # **********************************************************************************************************パブリックサブネットC↓
 
 echo "パブリックサブネットc用変数設定中"
-EC2_AZ_CODE="c"
-EC2_SUBNET_TYPE="public"
-EC2_SUBNET_TAG_NAME="your_public_subnet_name(az:c)"
-EC2_SUBNET_CIDR='10.0.2.0/24'
 EC2_AZ_NAME=${AWS_DEFAULT_REGION}${EC2_AZ_CODE}
 STRING_EC2_SUBNET_TAG="ResourceType=subnet,Tags=[{Key=Name,Value=${EC2_SUBNET_TAG_NAME}}]"
 EC2_VPC_ID=$( \
@@ -139,10 +131,6 @@ echo "作成したサブネットCIDR:${CREATED_SUBNET_CIDR}"
 # **********************************************************************************************************プライベートサブネットa↓
 
 echo "プライベートサブネットa用変数設定中"
-EC2_AZ_CODE="a"
-EC2_SUBNET_TYPE="private"
-EC2_SUBNET_TAG_NAME="your_private_subnet_name(az:a)"
-EC2_SUBNET_CIDR='10.0.100.0/24'
 EC2_AZ_NAME=${AWS_DEFAULT_REGION}${EC2_AZ_CODE}
 STRING_EC2_SUBNET_TAG="ResourceType=subnet,Tags=[{Key=Name,Value=${EC2_SUBNET_TAG_NAME}}]"
 EC2_VPC_ID=$( \
@@ -203,10 +191,6 @@ echo "作成したサブネットCIDR:${CREATED_SUBNET_CIDR}"
 # **********************************************************************************************************プライベートサブネットc↓
 
 echo "プライベートサブネットc用変数設定中"
-EC2_AZ_CODE="c"
-EC2_SUBNET_TYPE="private"
-EC2_SUBNET_TAG_NAME="your_private_subnet_name(az:c)"
-EC2_SUBNET_CIDR='10.0.200.0/24'
 EC2_AZ_NAME=${AWS_DEFAULT_REGION}${EC2_AZ_CODE}
 STRING_EC2_SUBNET_TAG="ResourceType=subnet,Tags=[{Key=Name,Value=${EC2_SUBNET_TAG_NAME}}]"
 EC2_VPC_ID=$( \

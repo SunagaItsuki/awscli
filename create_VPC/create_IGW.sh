@@ -4,10 +4,9 @@
 echo "IGW作成処理開始"
 echo "IGW用変数を設定中"
 
-AWS_DEFAULT_REGION='us-east-1'
-EC2_INTERNET_GATEWAY_TAG_NAME='Lab-igw'
+source ./env/global.env
+source ./env/create_IGW.env
 STRING_EC2_INTERNET_GATEWAY_TAG="ResourceType=internet-gateway,Tags=[{Key=Name,Value=${EC2_INTERNET_GATEWAY_TAG_NAME}}]"
-EC2_VPC_TAG_NAME='Lab'
 
 #IGW用変数確認
 echo "AWS_DEFAULT_REGION:${AWS_DEFAULT_REGION}"

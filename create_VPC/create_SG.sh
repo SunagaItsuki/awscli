@@ -4,10 +4,8 @@
 echo "SG作成処理開始"
 echo "SG用変数を設定中"
 
-AWS_DEFAULT_REGION='us-east-1'
-EC2_SECURITY_GROUP_NAME='your_sg_name'
-EC2_SECURITY_GROUP_DESCRIPTION='type your sg description here'
-EC2_VPC_TAG_NAME='your_vpc_name'
+source ./env/global.env
+source ./env/create_SG.env
 EC2_VPC_ID=$( \
   aws ec2 describe-vpcs \
     --filters Name=tag:Name,Values=${EC2_VPC_TAG_NAME} \

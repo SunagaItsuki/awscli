@@ -4,15 +4,8 @@
 echo -e "\n******************EC2インスタンス作成処理開始******************\n"
 echo -e "\n******************EC2インスタンス用変数を設定中******************\n"
 
-AWS_DEFAULT_REGION='us-east-1'
-EC2_AMI_ID='ami-your_ami_id'
-EC2_INSTANCE_TYPE='t2.micro'
-EC2_KEY_NAME='your_key_name'
-EC2_SG_ID='sg-your_sg_id sg-your_sg_id'
-EC2_SUBNET_ID='subnet-your_subnet_id'
-EC2_IP_ADDRESS='10.0.0.10'
-EC2_COUNT='1'
-EC2_INSTANCE_TAG_NAME='your_ec2_name'
+source ./env/global.env
+source ./env/create_Instance.env
 STRING_EC2_INSTANCE_TAG="ResourceType=instance,Tags=[{Key=Name,Value=${EC2_INSTANCE_TAG_NAME}}]"
 STRING_EC2_VOLUME_TAG="ResourceType=volume,Tags=[{Key=Name,Value=${EC2_INSTANCE_TAG_NAME}}]"
 STRING_EC2_NETWORK_INTERFACE_TAG="ResourceType=network-interface,Tags=[{Key=Name,Value=${EC2_INSTANCE_TAG_NAME}}]"

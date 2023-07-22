@@ -4,9 +4,8 @@
 echo "VPC作成処理開始"
 echo "VPC用変数を設定中"
 
-export AWS_DEFAULT_REGION='us-east-1'
-EC2_VPC_TAG_NAME='your_vpc_name'
-EC2_VPC_CIDR='10.0.0.0/16'
+source ./env/global.env
+source ./env/create_VPC.env
 STRING_EC2_VPC_TAG="ResourceType=vpc,Tags=[{Key=Name,Value=${EC2_VPC_TAG_NAME}}]" \
 
 #VPC用変数確認

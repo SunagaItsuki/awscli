@@ -4,17 +4,15 @@
 echo "パブリックルートテーブル作成処理開始"
 echo "パブリックルートテーブル用変数を設定中"
 
-AWS_DEFAULT_REGION='us-east-1'
-EC2_PUBLIC_ROUTE_TABLE_TAG_NAME='your_public_route_table'
+source ./env/global.env
+source ./env/create_RTB.env
 STRING_EC2_PUBLIC_ROUTE_TABLE_TAG="ResourceType=route-table,Tags=[{Key=Name,Value=${EC2_PUBLIC_ROUTE_TABLE_TAG_NAME}}]"
-EC2_VPC_TAG_NAME='your_vpc_name'
 EC2_VPC_ID=$( \
   aws ec2 describe-vpcs \
     --filters Name=tag:Name,Values=${EC2_VPC_TAG_NAME} \
     --query "Vpcs[].VpcId" \
     --output text \
 )
-EC2_PUBLIC_SUBNET_TAG_NAME='your_public_subnet_name'
 
 # ルートテーブル用変数確認
 echo "AWS_DEFAULT_REGION:${AWS_DEFAULT_REGION}"
@@ -26,9 +24,7 @@ echo "EC2_PUBLIC_SUBNET_TAG_NAME:${EC2_PUBLIC_SUBNET_TAG_NAME}"
 echo "パブリックルートテーブル用変数を設定完了"
 
 # プライベートルートテーブル用変数設定
-EC2_PRIVATE_ROUTE_TABLE_TAG_NAME='your_route_tabel_name'
 STRING_EC2_PRIVATE_ROUTE_TABLE_TAG="ResourceType=route-table,Tags=[{Key=Name,Value=${EC2_PRIVATE_ROUTE_TABLE_TAG_NAME}}]"
-EC2_PRIVATE_SUBNET_TAG_NAME='your_plivate_subnet_name'
 
 
 # ルートテーブル作成
